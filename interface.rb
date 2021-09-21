@@ -5,6 +5,7 @@ gifts = []
 
 def list(gifts)
   puts 'listar os itens'
+  # Show gifts with index
   puts gifts
 end
 
@@ -12,6 +13,15 @@ def add(gifts)
   puts 'Que item quer adicionar'
   item_add = gets.chomp
   gifts << item_add
+end
+
+def delete(gifts)
+  # Listar os items
+  list(gifts)
+
+  # Ask index of gift to delete
+
+  # Remove from array by index
 end
 
 loop do
@@ -24,7 +34,7 @@ loop do
   when 'add'
     add(gifts)
   when 'delete'
-    puts 'Que item quer apagar'
+    delete(gifts)
   when 'quit'
     break
   else
