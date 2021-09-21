@@ -7,14 +7,22 @@ def list(gifts)
   puts 'listar os itens'
   # Show gifts with index
   gifts.each_with_index do |gift, index|
-    puts "#{index + 1} - #{gift}"
+    puts "#{index + 1} - #{gift[:name]} - R$ #{gift[:price]}" 
+      
+    # teste de impressão com casas decimais: {sprintf('%.2f', gift[:price])}"
   end
 end
 
 def add(gifts)
   puts 'Que item quer adicionar'
-  item_add = gets.chomp
-  gifts << item_add
+  name = gets.chomp
+
+  puts 'Qual é o preço do item?'
+  price = gets.chomp.to_i
+
+  # O array "gifts" recebendo uma hash com chaves "name" e "price" 
+  # gifts = [{name: "brinquedo", price: 10}, {name: "iphone13", price: 9999}]
+  gifts << {name: name, price: price}
 end
 
 def delete(gifts)
@@ -23,11 +31,9 @@ def delete(gifts)
 
   # Ask index of gift to delete
   puts "Qual é o item (número) a ser deletado?"
-  index = gets.chomp.to_i - 1 
-  
+  index = gets.chomp.to_i - 1
   # Remove from array by index
   gifts.delete_at(index)
-
 end
 
 loop do
