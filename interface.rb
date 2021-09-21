@@ -42,7 +42,7 @@ def add(gifts)
 
   # O array "gifts" recebendo uma hash com chaves "name" e "price"
   # gifts = [{name: "brinquedo", price: 10}, {name: "iphone13", price: 9999}]
-  gifts << {name: name, price: price}
+  gifts << { name: name, price: price, bought: false }
 end
 
 def delete(gifts)
@@ -56,10 +56,18 @@ def delete(gifts)
   gifts.delete_at(index)
 end
 
+def mark(gifts)
+  # List gifts
+
+  # Ask gift index to mark as bought
+
+  # Mark as bought!
+end
+
 load(gifts)
 
 loop do
-  puts 'O que deseja fazer [list|add|delete|quit]?'
+  puts 'O que deseja fazer [list|add|mark|delete|quit]?'
   action = gets.chomp.downcase
 # Execute action
   case action
@@ -70,6 +78,9 @@ loop do
     save(gifts)
   when 'delete'
     delete(gifts)
+    save(gifts)
+  when 'mark'
+    mark(gifts)
     save(gifts)
   when 'quit'
     break
