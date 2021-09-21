@@ -6,7 +6,9 @@ gifts = []
 def list(gifts)
   puts 'listar os itens'
   # Show gifts with index
-  puts gifts
+  gifts.each_with_index do |gift, index|
+    puts "#{index + 1} - #{gift}"
+  end
 end
 
 def add(gifts)
@@ -20,8 +22,12 @@ def delete(gifts)
   list(gifts)
 
   # Ask index of gift to delete
-
+  puts "Qual é o item (número) a ser deletado?"
+  index = gets.chomp.to_i - 1 
+  
   # Remove from array by index
+  gifts.delete_at(index)
+
 end
 
 loop do
