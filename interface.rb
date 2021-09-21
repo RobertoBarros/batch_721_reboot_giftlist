@@ -8,7 +8,7 @@ gifts = []
 def save(gifts)
   CSV.open('gifts.csv','wb') do |csv|
     gifts.each do |gift|
-      csv << [gift[:name], gift[:price]]
+      csv << [gift[:name], gift[:price], gift[:bought]]
     end
   end
 end
@@ -17,7 +17,8 @@ def load(gifts)
   CSV.foreach('gifts.csv') do |row|
     name = row[0]
     price = row[1].to_i
-    gift = { name: name, price: price }
+    bought = row[2] == 'true'
+    gift = { name: name, price: price, bought: bought }
     gifts << gift
   end
 end
@@ -27,7 +28,7 @@ def list(gifts)
   puts 'listar os itens'
   # Show gifts with index
   gifts.each_with_index do |gift, index|
-    puts "#{index + 1} - #{gift[:name]} - R$ #{gift[:price]}"
+    puts "#{index + 1} - #{gift[:bought] ? '[X]' : '[ ]'} - #{gift[:name]} - R$ #{gift[:price]}"
 
     # teste de impressão com casas decimais: {sprintf('%.2f', gift[:price])}"
   end
@@ -58,10 +59,14 @@ end
 
 def mark(gifts)
   # List gifts
+  list(gifts)
 
   # Ask gift index to mark as bought
-
+  puts 'Qual marcar como comprado?'
+  index = gets.chomp.to_i - 1
+  
   # Mark as bought!
+  gifts[index][:bought] = true
 end
 
 load(gifts)
